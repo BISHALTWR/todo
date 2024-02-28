@@ -1,0 +1,5 @@
+# Ignore instance folder
+instance/
+__pycache__/
+dir.txt
+.venv/
