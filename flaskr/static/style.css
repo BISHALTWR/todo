@@ -1,0 +1,261 @@
+/* Removing margin, padding, box sizing to  */
+*, ::after, ::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Remove the outline after completion */
+    background: none;
+    border: none;
+    outline: none;
+    font-family: system-ui;
+    /* outline: 1px solid blue; */
+}
+
+hr {
+    height: 1px;
+    background-color: rgb(212, 209, 209);
+    margin: 0px auto;
+}
+
+button{
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0;
+}
+
+input {
+    border: 1px solid rgb(224, 220, 220);
+}
+
+/* Body */
+body {
+    /* padding-top: 8vh; */
+    background: #007bff;
+    /* background: linear-gradient(to right, #0062E6, #33AEFF); */
+    background: linear-gradient(to right, #33AEFF, #AAB3B4);
+}
+
+.visually-hidden{
+    visibility: hidden;
+}
+
+/* Parts of site */
+section {
+    /* width: 60vw; */
+    width: fit-content;
+    height: 70vh;
+    margin: 15vh auto;
+}
+
+/* Containers and div class*/
+.card-left, .card-right{
+    width: 30vw;
+    height: 100%
+}
+
+.card-left{
+    float: left;
+}
+
+.card-right{
+    float: left;
+}
+
+.input-group{
+    width: 20vw;
+    height: 5vh;
+    margin: 2vh auto;
+}
+
+/* Element */
+a{
+    color: #216ed1;
+    text-decoration: none;
+}
+a:hover{
+    color:rgb(16, 105, 34);
+    text-decoration: underline;
+}
+a.visited{
+    color: #216ed1;
+    text-decoration: none;
+}
+
+a#logout:hover{
+    color:red;
+}
+/*Fine tuning class and ids*/
+
+/* For sign in link */
+div.signin-link{
+    text-align: center;
+    padding: 1vh; 
+    margin-bottom: 1vh;
+}
+
+div.form-submit{
+    width: 20vw;
+    height: 5vh;
+    margin: 1vh auto;
+}
+
+button.btn-submit{
+    width: 100%;
+    height: 100%;
+}
+
+h2.card-title {
+    width: 100%;    text-align: center;
+    height: 7vh;
+    line-height: 7vh;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+input.form-input {
+    width: 100%;
+    height: 100%;
+}
+
+.input-group label{
+    position:absolute;
+    pointer-events: none;
+}
+.input-group{
+    position: relative; /*This can be added above too(.input-group is used before)*/
+}
+
+input.form-input::placeholder {
+    color: gray;
+    font-size: medium;
+}
+
+.card-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+/*Border radius and color*/
+
+hr {
+    width: 20vw;
+}
+section {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px #00040b;
+}
+
+input {
+    border-radius: 5vh;
+    overflow: hidden;
+    text-indent: 20px;
+}
+
+button {
+    border-radius: 5vh;
+}
+
+button span{
+    color: whitesmoke;
+    font-size: 0.9rem;
+    font-weight: 1000;
+    letter-spacing: 0.05rem;
+}
+
+button.btn-submit {
+    background-color: #0b5ed7;
+}
+
+/*Icons*/
+
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+img.icon {
+    width: 3vw;
+    height: 1.2rem;
+    margin: 1.5vw 0;
+}
+
+
+/* Navigation bar */
+.nav {
+    /* background-color: #0a0a23; */
+    background-color: #334756;
+    overflow: hidden; /*What goes out of box stays out of box*/
+    height: 8vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* border-radius: 20px; */
+}
+
+.nav a{ /* for links inside nav bar*/
+    text-decoration: none; /*to remove link design*/
+    float: left; /*This is default alignment though*/
+    display: block; /*This would destroy navbar if line above was missing*/
+    text-align: center;
+    /* File tuning below */
+    color: #f2f2f2;
+    padding: 14px 30px;
+    font-size: 17px;
+}
+
+
+.nav a:hover { /*When mouse above the links items of topnav*/
+    /* background-color: #ddd; */
+    color: teal;
+    text-decoration: underline;
+}
+
+.nav a.active { /*When that is selected*/
+    background-color: #04AA6D;
+    color:white;
+}
+
+/*Project Title*/
+.nav a.cce_full {
+    height:inherit;
+    border-radius: 20px;
+}
+.nav a.cce_short {
+    height:inherit;
+    float: left;
+    display: none;
+}
+
+/*Resposniveness*/
+@media screen and (max-width: 700px){
+    .nav a.cce_full {display: none;}
+    .nav a.cce_short {
+        float: left;
+        display: block;
+    }
+    .card-left{
+        display: none;
+    }
+    .card-right{
+        width: 60vw;
+    }
+    .input-group{
+        width: 40vw;
+    }
+    hr {
+        width: 40vw;
+    }
+    button.btn-submit {
+        width: 30vw;
+        margin-inline: -5vw;
+    }
+    
+}
+@media screen and (max-height: 600px) {
+    div.nav {display:none} 
+ }

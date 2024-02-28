@@ -1,0 +1,30 @@
+.
+├── dir.txt
+├── flaskr
+│   ├── auth.py
+│   ├── db.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── auth.cpython-310.pyc
+│   │   ├── db.cpython-310.pyc
+│   │   ├── __init__.cpython-310.pyc
+│   │   └── tasks.cpython-310.pyc
+│   ├── schema.sql
+│   ├── static
+│   │   ├── Gemini_Generated_Image.jpeg
+│   │   ├── left-image.jpeg
+│   │   └── style.css
+│   ├── tasks.py
+│   └── templates
+│       ├── auth
+│       │   ├── login.html
+│       │   └── register.html
+│       ├── base.html
+│       └── todo
+│           ├── create.html
+│           ├── index.html
+│           └── update.html
+└── instance
+    └── flaskr.sqlite
+
+7 directories, 20 files

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit "{{ task['title'] }}"{% endblock %}
+
+{% block content %}
+  <!-- <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title"
+      value="{{ request.form['title'] or task['title'] }}" required>
+    <input name="category" id="category"
+      value="{{ request.form['category'] or task['category'] }}" required>
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] or task['body'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('tasks.delete', id=task['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form> -->
+
+  <div class="card-right">
+    <h2 class="card-title">Edit Task: '{{task['title']}}'</h2>
+    <form method="post">
+        <div class="input-group">
+            <label for="title" class="visually-hidden">Title</label>
+            <input type="text" value="{{ request.form['title'] or task['title'] }}" class="form-input" id="title" name="title" placeholder="Title" required autofocus>
+        </div>
+
+        <div class="input-group">
+            <label for="category" class="visually-hidden">Category</label>
+            <input type="text" value="{{ request.form['category'] or task['category'] }}" class="form-input" id="category" name="category" placeholder="College/Work/Personal">
+        </div>
+        
+        <div class="input-group">
+            <label for="body" class="visually-hidden">Body</label>
+            <input type="text" value="{{ request.form['body'] or task['body'] }}" class="form-input" id="category" name="body" placeholder="Add description here">
+        </div>
+
+        <div class="form-submit">
+            <button class="btn-submit" type="submit" value="Save"><span>Update</span></button>
+        </div>
+    </form>
+    <form action="{{ url_for('tasks.delete', id=task['id']) }}" method="post">
+      <!-- <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');"> -->
+      <div class="form-submit">
+        <button class="btn-submit" style="background-color: red;" type="submit" value="Delete" onclick="return confirm('Are you sure?');"><span>Delete</span></button>
+    </div>
+    </form>
+</div>
+{% endblock %}

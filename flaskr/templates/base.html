@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %} - SuperTask</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="nav" id="mynav">
+        <a href="#cce_full" class="cce_full"><h1>SuperTask</h1></a>
+        <a href="#cce_short" class="cce_short"><h1>To-Do</h1></a>
+        <ul class="navbar-list" style="float:right; display:flex; line-height: 4vh; list-style: none;">
+          {% if g.user %}
+            <li><span><a href="mailto: bishaltwr@gmail.com" style="color:white">Hello! {{ g.user['username'].title() }}</a></span></li>
+            <li><a href="{{ url_for('auth.logout') }}" id="logout">Log Out</a></li>
+          {% else %}
+            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+          {% endif %}
+        </ul>
+    </div>
+    <section class="content">
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+    </section>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}New Task{% endblock %}
+
+{% block content %}
+  <div class="card-right">
+    <h2 class="card-title">New Task</h2>
+    <form method="post">
+        <div class="input-group">
+            <label for="title" class="visually-hidden">Title</label>
+            <input type="text" value="{{ request.form['title'] }}" class="form-input" id="title" name="title" placeholder="Title" required autofocus>
+        </div>
+
+        <div class="input-group">
+            <label for="category" class="visually-hidden">Category</label>
+            <input type="text" value="{{ request.form['category'] }}" class="form-input" id="category" name="category" placeholder="College/Work/Personal">
+        </div>
+        
+        <div class="input-group">
+            <label for="body" class="visually-hidden">Body</label>
+            <input type="text" value="{{ request.form['body'] }}" class="form-input" id="category" name="body" placeholder="Add description here">
+        </div>
+
+        <div class="form-submit">
+            <button class="btn-submit" type="submit" value="Save"><span>Create</span></button>
+        </div>
+    </form>
+</div>
+{% endblock %}

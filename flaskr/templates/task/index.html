@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}<
+
+{% block content %}
+  <div style="margin-inline: auto; margin-block: 20px; width: fit-content;">
+    <h1>Tasks</h1>
+  </div>
+  <script>
+    function updateTask(id, completed) {
+        fetch('/'+ id+ '/update_completed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                completed: completed ? 1 : 0
+            })
+        }).then(() => {
+        var taskTitle = document.getElementById('task-title-' + id);
+        if (completed) {
+            taskTitle.style.textDecoration = 'line-through';
+            taskTitle.style.textDecorationColor = 'white';
+            taskTitle.style.textDecorationThickness = '2px';
+        } else {
+            taskTitle.style.textDecoration = 'none';
+        }
+    });
+    }
+    </script>
+  {% for task in tasks %}
+    <div class="task" style="outline:1px solid black; display: flex; flex-direction: row; padding-block: 10px;">
+      <input type="checkbox" class="custom-checkbox" {% if task['completed'] == 1 %}checked class="checked"{% endif %} style="margin-inline: 20px; width: 25px;"  onclick="updateTask(`{{task['id']}}`, this.checked)">
+      <article>
+        <header>
+          <div>
+            <div style="display: flex;">
+              <h1 id="task-title-{{task['id']}}" {% if task['completed'] %}style="text-decoration: line-through; text-decoration-color: white; text-decoration-thickness: 2px; margin-right: 20px;"{% endif %}>{{ task['title'] }}</h1>
+              <a class="action" style="margin-left: 20px;" href="{{ url_for('tasks.update', id=task['id']) }}">Edit</a>
+            </div>
+            <div class="about">Added on {{ task['created'].strftime('%Y-%m-%d') }} of category {{task['category']}}</div>
+          </div>
+        </header>
+        <p class="body">{{ task['body'] }}</p>
+      </article>
+    </div>
+      {% if not loop.last %}
+      <!-- <hr> -->
+    {% endif %}
+  {% endfor %}
+  <div  style="width:60vw; display:flex; flex-direction: columns;">
+    {% if g.user %}
+    <div style="width: fit-content; margin-inline:auto; margin-top: 20px; overflow-x: hidden;">
+      <a class="action" href="{{ url_for('tasks.create') }}">+ Add Task</a>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}
