@@ -14,7 +14,7 @@ def index():
     db = get_db()
     tasks = db.execute(
         'SELECT t.id, t.created, t.title, t.body, t.category, t.completed FROM tasks t '
-        'WHERE t.user_id = g.user["id"]'
+        'WHERE t.user_id = g.user["id"] '
         'JOIN user u ON t.user_id = u.id '
         'ORDER BY t.created ASC'
     ).fetchall()
