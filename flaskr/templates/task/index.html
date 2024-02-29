@@ -4,7 +4,7 @@
 
 {% block content %}
   <div style="margin-inline: auto; margin-block: 20px; width: fit-content;">
-    <h1>Tasks</h1>
+    <h1><u>Tasks</u></h1>
   </div>
   <script>
     function updateTask(id, completed) {
@@ -20,30 +20,45 @@
         var taskTitle = document.getElementById('task-title-' + id);
         if (completed) {
             taskTitle.style.textDecoration = 'line-through';
-            taskTitle.style.textDecorationColor = 'white';
+            taskTitle.style.textDecorationColor = 'teal';
             taskTitle.style.textDecorationThickness = '2px';
         } else {
             taskTitle.style.textDecoration = 'none';
         }
     });
     }
+
+    function toggleDetails(taskId) {
+      var detailsDiv = document.getElementById('task-details-' + taskId);
+      if (detailsDiv.style.display === 'none') {
+        detailsDiv.style.display = 'block';
+      } else {
+        detailsDiv.style.display = 'none';
+      }
+    }
     </script>
   {% for task in tasks %}
-    <div class="task" style="outline:1px solid black; display: flex; flex-direction: row; padding-block: 10px;">
-      <input type="checkbox" class="custom-checkbox" {% if task['completed'] == 1 %}checked class="checked"{% endif %} style="margin-inline: 20px; width: 25px;"  onclick="updateTask(`{{task['id']}}`, this.checked)">
-      <article>
-        <header>
+        <div class="task" style="outline:1px solid black; display: flex; flex-direction: row; padding-block: 10px;">
+          <input type="checkbox" class="custom-checkbox" {% if task['completed'] == 1 %}checked class="checked"{% endif %} style="margin-inline: 20px; width: 25px; cursor: pointer;"  onclick="updateTask(`{{task['id']}}`, this.checked)">
           <div>
-            <div style="display: flex;">
-              <h1 id="task-title-{{task['id']}}" {% if task['completed'] %}style="text-decoration: line-through; text-decoration-color: white; text-decoration-thickness: 2px; margin-right: 20px;"{% endif %}>{{ task['title'] }}</h1>
-              <a class="action" style="margin-left: 20px;" href="{{ url_for('tasks.update', id=task['id']) }}">Edit</a>
-            </div>
-            <div class="about">Added on {{ task['created'].strftime('%Y-%m-%d') }} of category {{task['category']}}</div>
+            <article>
+              <header>
+                <div>
+                  <div style="display: flex; align-items: center; cursor: pointer;">
+                    <h1 id="task-title-{{task['id']}}" {% if task['completed'] %}style="text-decoration: line-through; text-decoration-color: white; text-decoration-thickness: 2px; margin-right: 20px;"{% endif %} onclick="toggleDetails(`{{task['id']}}`)">&nbsp;&nbsp;&nbsp;&nbsp;{{ task['title'] }}&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                  </div>
+                  <div id="task-details-{{task['id']}}" style="display: none;">
+                    <div class="about">&nbsp;&nbsp;&nbsp;&nbsp;Added on: {{ task['created'].strftime('%Y-%m-%d') }}<br>&nbsp;&nbsp;&nbsp;&nbsp;Category: {{task['category']}}</div>
+                    <p class="body">&nbsp;&nbsp;&nbsp;&nbsp;Description: {{ task['body'] }}</p>
+                  </div>
+                </div>
+              </header>
+            </article>
           </div>
-        </header>
-        <p class="body">{{ task['body'] }}</p>
-      </article>
-    </div>
+          <div>
+            <a class="action" style="margin-right: 20px;" href="{{ url_for('tasks.update', id=task['id']) }}"><img src="{{ url_for('static', filename='edit.png') }}" height="25px" alt="Edit-icon" title="Edit"></a>
+          </div>
+        </div>
       {% if not loop.last %}
       <!-- <hr> -->
     {% endif %}

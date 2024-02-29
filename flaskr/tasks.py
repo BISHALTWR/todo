@@ -14,10 +14,10 @@ def index():
     db = get_db()
     tasks = db.execute(
         'SELECT t.id, t.created, t.title, t.body, t.category, t.completed FROM tasks t '
-        'WHERE t.user_id = ? '
         'JOIN user u ON t.user_id = u.id '
+        'WHERE t.user_id = ? '
         'ORDER BY t.created ASC',
-        (g.user['id'])
+        (g.user['id'],)
     ).fetchall()
     return render_template('task/index.html', tasks=tasks)
 

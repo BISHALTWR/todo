@@ -11,8 +11,8 @@
   </head>
   <body>
     <div class="nav" id="mynav">
-        <a href="#cce_full" class="cce_full"><h1>SuperTask</h1></a>
-        <a href="#cce_short" class="cce_short"><h1>To-Do</h1></a>
+        <a href="#" id="cce_full"><h1>SuperTask</h1></a>
+        <a href="#" id="cce_short"><h1>To-Do</h1></a>
         <ul class="navbar-list" style="float:right; display:flex; line-height: 4vh; list-style: none;">
           {% if g.user %}
             <li><span><a href="mailto: bishaltwr@gmail.com" style="color:white">Hello! {{ g.user['username'].title() }}</a></span></li>
@@ -23,7 +23,7 @@
           {% endif %}
         </ul>
     </div>
-    <section class="content">
+    <section class="content" style="background-color:rgba(255, 255, 255, 0.795);">
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
     </section>
