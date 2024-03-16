@@ -1,7 +1,7 @@
 [project]
 name = "flaskr"
 version = "1.0.0"
-description = "The basic Todo app built in the Flask tutorial. Heavily inspired from palletprojects"
+description = "The basic Todo app built in the Flask tutorial. Inspired from palletprojects blog app"
 dependencies = [
     "flask",
 ]
