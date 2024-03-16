@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Todo App 
 
 This is a simple Todo application built with Flask, sqlite.
